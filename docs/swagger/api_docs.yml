@@ -1,0 +1,178 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+
+paths:
+  /register:
+    post:
+      summary: Add a new user
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegisterReqBody'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+  /deposit:
+    post:
+      summary: Deposit some amount
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TransactionReqBody'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '404':
+          description: User not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFoundResponse'
+  /withdraw:
+    post:
+      summary: Withdraw some amount
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TransactionReqBody'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '404':
+          description: User not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFoundResponse'
+        '406':
+          description: Cannot withdraw because the balance will be negative error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CannotWithdrawResponse'
+components:
+  schemas:
+    RegisterReqBody:
+      type: object
+      properties:
+        name:
+          type: string
+    TransactionReqBody:
+      type: object
+      properties:
+        userId:
+          type: integer
+        amount:
+          type: integer
+          format: double
+    RegisterResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        balance:
+          type: string
+          format: double
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    TransactionResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        balance:
+          type: string
+          format: double
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        current_balance:
+          type: string
+          format: double
+    ValidationResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              rule:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    UserNotFoundResponse:
+      type: object
+      properties:
+        message:
+          type: string
+    CannotWithdrawResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        current_balance:
+          type: string
+          format: double

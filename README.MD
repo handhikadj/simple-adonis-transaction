@@ -1,6 +1,6 @@
 # Simple Adonis.js Transaction App
 
-Adonis.js, Node.js, Typescript, MySQL
+Adonis.js, Node.js, Typescript, MySQL, Swagger
 
 ## Installation
 
@@ -10,7 +10,7 @@ Adonis.js, Node.js, Typescript, MySQL
 
 ## Running The App
 
-#### Deployment
+#### Serving The App
 
 Development: Run `npm run dev`
 
@@ -22,3 +22,7 @@ Production: Run `npm run build`. [Click here](https://docs.adonisjs.com/guides/d
 2. Run `npm run test`
 
 Notes: Tests are located at `/tests`
+
+#### API Docs (Swagger)
+
+Serve the app (read the Deployment section above) and go to `/docs`
