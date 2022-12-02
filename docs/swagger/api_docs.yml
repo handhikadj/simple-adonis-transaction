@@ -106,49 +106,63 @@ components:
       properties:
         name:
           type: string
+          example: Michael
     TransactionReqBody:
       type: object
       properties:
         userId:
           type: integer
+          example: 1
         amount:
           type: integer
           format: double
+          example: 500.25
     RegisterResponse:
       type: object
       properties:
         id:
           type: integer
+          example: 1
         name:
           type: string
+          example: Michael
         balance:
           type: string
           format: double
+          example: 500.25
         created_at:
           type: string
           format: date-time
+          example: "2022-12-02T18:43:33.000+07:00"
         updated_at:
           type: string
           format: date-time
+          example: "2022-12-02T18:43:33.000+07:00"
     TransactionResponse:
       type: object
       properties:
         id:
           type: integer
+          example: 1
         name:
           type: string
+          example: Michael
         balance:
           type: string
           format: double
+          example: 500.25
         created_at:
           type: string
           format: date-time
+          example: "2022-12-02T18:43:33.000+07:00"
         updated_at:
           type: string
           format: date-time
+          example: "2022-12-02T18:43:33.000+07:00"
         current_balance:
           type: string
           format: double
+          example: 500.25
     ValidationResponse:
       type: object
       properties:
@@ -159,20 +173,26 @@ components:
             properties:
               rule:
                 type: string
+                example: required
               field:
                 type: string
+                field: name
               message:
                 type: string
+                example: required validation failed
     UserNotFoundResponse:
       type: object
       properties:
         message:
           type: string
+          example: User not found
     CannotWithdrawResponse:
       type: object
       properties:
         message:
           type: string
+          example: "Cannot over-withdraw / having negative balance. Current balance: 0.00"
         current_balance:
           type: string
           format: double
+          example: "0.00"
